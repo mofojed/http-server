@@ -34,6 +34,7 @@ if (argv.h || argv.help) {
     "  -K --key           Path to ssl key file (default: key.pem).",
     "",
     "  -r --robots        Respond to /robots.txt [User-agent: *\\nDisallow: /]",
+    "  -w                 Use weak etags instead of strong etags",
     "  -h --help          Print this list and exit."
   ].join('\n'));
   process.exit();
@@ -76,7 +77,8 @@ function listen(port) {
     robots: argv.r || argv.robots,
     ext: argv.e || argv.ext,
     logFn: requestLogger,
-    proxy: proxy
+    proxy: proxy,
+    weakEtags: argv.w
   };
 
   if (argv.cors) {
